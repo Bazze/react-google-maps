@@ -54,7 +54,7 @@ export default class GoogleMap extends Component {
   //
   // Public APIs - Use this carefully
   // See discussion in https://github.com/tomchentw/react-google-maps/issues/62
-  // 
+  //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
@@ -86,7 +86,11 @@ export default class GoogleMap extends Component {
     // React's children creators.
     //
     const map = GoogleMapHolder._createMap(domEl, mapProps);
-    this.setState({ map });
+    this.setState({ map }, () => {
+      if (this.props.onMapInitialized) {
+        this.props.onMapInitialized(map);
+      }
+    });
   }
 
   render () {
