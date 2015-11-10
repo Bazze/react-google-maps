@@ -63,6 +63,10 @@ export default class Marker extends Component {
     const {mapHolderRef, ...markerProps} = this.props;
     const marker = MarkerCreator._createMarker(mapHolderRef, markerProps);
 
+    if (this.props.onMarkerInitialized) {
+      this.props.onMarkerInitialized(marker);
+    }
+
     this.setState({ marker });
   }
 
