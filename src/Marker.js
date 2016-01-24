@@ -19,6 +19,7 @@ import GoogleMapHolder from "./creators/GoogleMapHolder";
 
 export default class Marker extends Component {
   static propTypes = {
+    onMarkerInitialized: PropTypes.func,
     // Uncontrolled default[props] - used only in componentDidMount
     ...markerDefaultPropTypes,
     // Controlled [props] - used in componentDidMount/componentDidUpdate
@@ -80,6 +81,10 @@ export default class Marker extends Component {
       ...this.props,
       mapHolderRef,
     });
+
+    if (this.props.onMarkerInitialized) {
+      this.props.onMarkerInitialized(marker);
+    }
 
     this.setState({ marker });
   }
