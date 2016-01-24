@@ -1,5 +1,6 @@
 import {
   default as React,
+  PropTypes,
   Component,
 } from "react";
 
@@ -16,6 +17,7 @@ import {
 
 export default class Marker extends Component {
   static propTypes = {
+    onMarkerInitialized: PropTypes.func,
     // Uncontrolled default[props] - used only in componentDidMount
     ...markerDefaultPropTypes,
     // Controlled [props] - used in componentDidMount/componentDidUpdate
@@ -68,6 +70,10 @@ export default class Marker extends Component {
       return;
     }
     const marker = MarkerCreator._createMarker(this.props);
+
+    if (this.props.onMarkerInitialized) {
+      this.props.onMarkerInitialized(marker);
+    }
 
     this.setState({ marker });
   }
