@@ -56,6 +56,8 @@ export default class GoogleMap extends Component {
   getTilt() { return (this.props.map || this.refs.delegate).getTilt(); }
 
   getZoom() { return (this.props.map || this.refs.delegate).getZoom(); }
+
+  getMap() { return this.props.map || this.refs.delegate; }
   // END - Public APIs
   //
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
