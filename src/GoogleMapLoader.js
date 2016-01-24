@@ -22,6 +22,7 @@ export default class GoogleMapLoader extends Component {
   static propTypes = {
     containerElement: PropTypes.node.isRequired,
     googleMapElement: propTypesElementOfType(GoogleMap).isRequired,
+    onMapInitialized: PropTypes.func,
   };
 
   static defaultProps = {
@@ -42,7 +43,11 @@ export default class GoogleMapLoader extends Component {
     // React's children creators.
     //
     const map = GoogleMapHolder._createMap(domEl, restProps);
-    this.setState({ map });
+    this.setState({ map }, () => {
+      if (this.props.onMapInitialized) {
+        this.props.onMapInitialized(map);
+      }
+    });
   }
 
   renderChild() {
