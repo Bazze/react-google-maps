@@ -141,6 +141,8 @@ const publicMethodMap = {
   getVisible(marker) { return marker.getVisible(); },
 
   getZIndex(marker) { return marker.getZIndex(); },
+
+  getMarker(marker) { return marker; },
   // END - Public APIs
 };
 
